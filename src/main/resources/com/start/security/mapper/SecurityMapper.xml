@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.start.security.mapper.SecurityMapper">
+	
+	<select id="login" resultType="com.start.security.dto.SecurityDTO">
+		SELECT * FROM SECURITY_INFO WHERE USERNAME = #{username}
+	</select>
+	
+	<insert id="insertUserInfo">
+		INSERT INTO SECURITY_INFO (
+		                           USERNAME,
+		                           PASSWORD,
+		                           PW_SALT
+		                           )
+			                VALUES (
+			                        #{username},
+			                        #{password},
+			                        #{pwSalt}
+			                        )
+	</insert>
+	
+	<update id="updateUserInfo">
+		UPDATE SECURITY_INFO SET PASSWORD = #{password} WHERE USERNAME = #{username}
+	</update>
+	
+	<delete id="deleteUserInfo">
+		DELETE FROM SECURITY_INFO WHERE USERNAME = #{username}
+	</delete>
+</mapper>

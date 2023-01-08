@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.start.member.mapper.MemberMapper">
+
+	<select id="selectMember" resultType="com.start.member.dto.MemberDTO">
+		SELECT 
+			MEM_ID
+			,MEM_NM
+			,GRADE
+			,REG_DATE
+			,CHG_DATE
+		FROM
+			MEMBER_INFO
+	</select>
+	
+	<select id="findById" resultType="com.start.member.dto.MemberDTO" parameterType='long'>
+		SELECT 
+			*
+		FROM
+			MEMBER_INFO
+	   WHERE MEM_ID = #{memId}
+	</select>
+	
+	<insert id="join" parameterType="com.start.member.dto.MemberDTO">
+		INSERT INTO
+			MEMBER_INFO(
+			MEM_ID
+			,MEM_NM
+			,GRADE
+			,KEY
+			,REG_DATE
+			)VALUES(
+			#{memId}
+			,#{memNm}
+			,#{grade}
+			,#{key}
+			,SYSDATE
+			)
+	</insert>
+
+</mapper>
