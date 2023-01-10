@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.2/axios.min.js"></script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
@@ -13,13 +14,16 @@
 
 		<div>
 			<span>
-				<h2>USERNAME</h2> <input type="text" id="username">
+				<h2>ID</h2> <input type="text" id="username">
 			</span> <span>
 				<h2>PASSWORD</h2> <input type="password" id="password">
 			</span>
 		</div>
 		<div style="display: flex; justify-content: center;">
 			<button id="loginBtn" style="width: 100px; height: 50px">LOGIN</button>
+		</div>
+		<div style="display: flex; justify-content: center;">
+			<button id="signupBtn" style="width: 100px; height: 50px">SIGN UP</button>
 		</div>
 		<div style="display: flex; justify-content: center;">
 			<button id="loginCheckBtn" style="width: 100px; height: 50px">LOGIN
@@ -34,27 +38,38 @@ document.querySelector("#loginBtn").addEventListener("click",() => {
 	
 	const loginObj = {username:username, password:password}
 	
-	fetch("http://localhost:8081/security/login", {
+	axios({
+		url: "http://localhost:8081/security/login",
 		method: 'POST',
-		body: JSON.stringify(loginObj),
+		data: JSON.stringify(loginObj),
 		headers: {
 		      'Content-Type': 'application/json',
 		    },
 	})
-	.then(response => {
-		console.log(response)
+	.then(res=> {
+		console.log(res.data)
+		location.href = 'login-success'
 	})
+	.catch(res => alert("Fail Login........"))
 }, false)
+
+document.querySelector("#signupBtn").addEventListener("click",() => {
+	location.href = "signup"
+}, false)
+
 document.querySelector("#loginCheckBtn").addEventListener("click",() => {
-	fetch("http://localhost:8081/security/login-check", {
+	axios({
+		url: "http://localhost:8081/security/login-check",
 		method: 'POST',
 		headers: {
 		      'Content-Type': 'application/json',
 		    },
 	})
-	.then(response => {
-		console.log(response)
-	})
+	.then(res => console.log(res.data))
 }, false)
+
+	session = document.cookie
+	console.log(session)
+ 
 </script>
 </html>

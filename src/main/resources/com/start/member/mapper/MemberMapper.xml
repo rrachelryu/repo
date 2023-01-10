@@ -23,20 +23,18 @@
 	   WHERE MEM_ID = #{memId}
 	</select>
 	
-	<insert id="join" parameterType="com.start.member.dto.MemberDTO">
+	<insert id="insertMemberInfo" parameterType="com.start.member.dto.MemberDTO">
 		INSERT INTO
 			MEMBER_INFO(
-			MEM_ID
-			,MEM_NM
-			,GRADE
-			,KEY
-			,REG_DATE
+				MNO
+				,USERNAME
+				,MEM_NM
+				,GRADE
 			)VALUES(
-			#{memId}
-			,#{memNm}
-			,#{grade}
-			,#{key}
-			,SYSDATE
+				MEMBER_SEQ.NEXTVAL
+				,#{username}
+				,#{memNm}
+				,#{grade}
 			)
 	</insert>
 

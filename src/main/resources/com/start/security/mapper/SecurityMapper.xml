@@ -4,6 +4,10 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.start.security.mapper.SecurityMapper">
 	
+	<select id="loginCheck" resultType="com.start.member.dto.MemberDTO">
+		SELECT * FROM MEMBER_INFO WHERE USERNAME = #{username}
+	</select>
+	
 	<select id="login" resultType="com.start.security.dto.SecurityDTO">
 		SELECT * FROM SECURITY_INFO WHERE USERNAME = #{username}
 	</select>
