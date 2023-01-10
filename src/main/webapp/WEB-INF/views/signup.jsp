@@ -40,7 +40,8 @@ document.querySelector("#signupBtn").addEventListener("click",() => {
 				password: password
 			},
 			memberDTO: {
-				memNm: nickname
+				memNm: nickname,
+				grade: 0
 			}
 	}
 	
